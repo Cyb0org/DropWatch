@@ -1,0 +1,36 @@
+.PU
+.TH dropwatch "1" "Mar 2009" "Neil Horman"
+.SH NAME
+dropwatch - kernel dropped packet monitoring utility 
+.SH SYNOPSIS
+.B dropwatch [-l <method> | list]
+.SH DESCRIPTION
+.I dropwatch 
+dropwatch is an interactive utility for monitoring and recording packets that
+are dropped by the kernel
+.SH OPTIONS  
+.TP
+.B -l <method> | list
+Select the translation method to use when a drop alert arrives.  By default the
+raw instruction pointer of a drop location is output, but by the use of the -l
+option, we can assign a translation method so that the instruction pointer can
+be translated into function names.  Currently supported lookup methods are:
+.PP
+.B kas - use /proc/kallsyms to lookup instruction pointers to function mappings
+.SH INTERACTIVE COMMANDS
+.TP
+.B start 
+Tells the kernel to start reporting dropped packets
+.TP
+.B stop 
+Tells the kernel to discontinue reporting dropped packets
+.TP
+.B exit 
+Exits the dropmonitor program
+.TP
+.B help 
+Displays summary of all commands
+.TP
+.B set alertlimit <value>
+Sets a triggerpoint to stop monitoring for dropped packets after <value> alerts
+have been received
